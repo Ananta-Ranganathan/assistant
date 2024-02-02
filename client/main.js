@@ -1,9 +1,11 @@
-const requestText = document.getElementById('requestText');
+const converter = new showdown.Converter();
 
 async function sendRequest() {
+    const requestText = document.getElementById('requestText');
+    const model = document.getElementById('dropdown').value;
     let url = 'http://localhost:4000/api/proxy';
     let data = {
-      model: "deepseek-coder:6.7b",
+      model: model,
       prompt: requestText.value,
       stream: false
     };
@@ -23,7 +25,8 @@ async function sendRequest() {
       
       const responseData = await response.json();
       console.log(responseData);
-      document.getElementById("responseText").innerText = JSON.stringify(responseData, null, 2); // Pretty-print the JSON data
+      const html = converter.makeHtml(responseData);
+      document.getElementById("responseText").innerHTML = html;
     } catch (error) {
       console.log('There was a problem with your fetch operation: ', error);
     }
