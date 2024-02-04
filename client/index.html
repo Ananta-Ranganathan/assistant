@@ -1,40 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <title>Chat Interface</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* Additional styles for better spacing and a markdown-like box */
-    #responseText {
-      background-color: #f7f7f7;
-      border: 1px solid #dddddd;
-      border-radius: 4px;
-      padding: 20px;
-      white-space: pre-wrap; /* Since markdown respects line breaks */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+      margin: 0;
+      padding: 50px 0;
+      box-sizing: border-box;
     }
-    /* Custom spacing for form elements for better visual separation */
-    .form-group, .btn {
-      margin-bottom: 15px; /* Adds more space below form elements */
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+    .chat-box {
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    }
+    input[type="text"], .btn, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    }
+    input[type="text"], select {
+      background-color: #333;
+      color: #fff;
+    }
+    .btn {
+      background-color: #0062cc;
+      color: #fff;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
-<body class="py-5">
+<body>
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="form-group">
-          <input type="text" class="form-control mb-3" id="requestText" placeholder="Enter your request here" />
-        </div>
-        <button class="btn btn-primary mb-3" onclick="sendRequest()">Send Request</button>
-        <div class="form-group">
-          <select class="form-control mb-3" id="dropdown">
-            <option value="llama2">Llama</option>
-            <option value="mistral">Mistral</option>
-            <option value="deepseek-coder:6.7b">DeepSeek</option>
-          </select>
-        </div>
-        <div id="responseText" class="mt-3"></div> <!-- Styled response area -->
-      </div>
+    <div class="chat-box">
+      <input type="text" id="requestText" placeholder="Enter your request here" />
+      <button class="btn" onclick="sendRequest()">Send Request</button>
+      <select id="dropdown">
+        <option value="llama2">Llama</option>
+        <option value="mistral">Mistral</option>
+        <option value="deepseek-coder:6.7b">DeepSeek</option>
+      </select>
+      <div id="responseText"></div> <!-- Styled response area -->
     </div>
   </div>
   
@@ -42,3 +65,4 @@
   <script src="main.js"></script>
 </body>
 </html>
+
